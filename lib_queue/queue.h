@@ -6,6 +6,10 @@ class Queue {
 	int _head;
 	int _count;
 public:
+	Queue() : _data(nullptr), _head(0), _count(0);
+	Queue() : _head(0), _count(0) {
+
+	}
 	void push();
 	void pop();
 	inline T& head();
