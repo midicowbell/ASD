@@ -6,6 +6,7 @@ class Stack {
 	int _size;
 	int _top;
 public:
+	Stack() : _size(0), _top(-1), _data(nullptr) {};
 	Stack(int size) : _size(size), _top(-1) {
 		_data = new T[size];
 	}
