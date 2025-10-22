@@ -105,15 +105,12 @@ TEST(TestStackLib, stress_test_large_operations) {
 	const int SIZE = 1000;
 	Stack<int> S(SIZE);
 
-	// Многократные push/pop операции
 	for (int cycle = 0; cycle < 10; cycle++) {
-		// Заполняем
 		for (int i = 0; i < SIZE; i++) {
 			S.push(i + cycle * 1000);
 		}
 		EXPECT_TRUE(S.is_full());
 
-		// Опустошаем
 		for (int i = 0; i < SIZE; i++) {
 			EXPECT_EQ(S.top(), (SIZE - 1 - i) + cycle * 1000);
 			S.pop();
