@@ -5,7 +5,7 @@
 #include "dsu.h"
 
 
-TEST(TestDSU, can_create_with_init_const) {        // создание с начальной константой
+TEST(TestDSU, can_create_with_init_const) {        // создание с начальным размером
 	DSU dsu(10);
 	EXPECT_EQ(dsu.size(), 10);
 }
