@@ -1,0 +1,2 @@
+create_project_lib(algorithms)
+target_link_libraries(algorithms PUBLIC DSU)

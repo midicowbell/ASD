@@ -3,6 +3,7 @@
 #include <gtest/gtest.h>
 #include "../lib_easy_example/easy_example.h"
 #include "dsu.h"
+#include "algos.h"
 
 
 TEST(TestDSU, can_create_with_init_const) {        // создание с начальным размером
@@ -46,4 +47,26 @@ TEST(TestDSU, path_compression_effectiveness) {    // эффективность сжатия пути
     dsu.unite(1, 2);
     dsu.unite(2, 3);
     EXPECT_EQ(dsu.find(3), dsu.find(0));
+}
+TEST(TestCountIslands, Chessboard10x10) {
+    const int SIZE = 10;
+    std::vector<std::vector<int>> grid(SIZE, std::vector<int>(SIZE));
+
+    for (int i = 0; i < SIZE; i++) {
+        for (int j = 0; j < SIZE; j++) {
+            grid[i][j] = (i + j) % 2;
+        }
+    }
+
+    EXPECT_EQ(count_islands(grid), 50); // 100 клеток / 2 = 50 островов
+}
+
+TEST(TestCountIslands, ClassicExample) {
+    std::vector<std::vector<int>> grid = {
+        {1, 1, 0, 0, 0},
+        {1, 1, 0, 0, 0},
+        {0, 0, 1, 0, 0},
+        {0, 0, 0, 1, 1}
+    };
+    EXPECT_EQ(count_islands(grid), 3);
 }
