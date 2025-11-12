@@ -78,10 +78,10 @@ public:
 
     typedef Iterator iterator;
 
-    List() : _head(nullptr), _tail(nullptr), _count(0) {};
+    ListDoubly() : _head(nullptr), _tail(nullptr), _count(0) {};
 
 
-    ~List() {
+    ~ListDoubly() {
         clear();
     }
 
@@ -155,7 +155,7 @@ public:
 
     void pop_front() {
         if (is_empty()) {
-            throw std::logical_error("Cannot pop from empty list");
+            throw std::logic_error("Cannot pop from empty list");
         }
 
         Node<T>* temp = _head;
@@ -171,7 +171,7 @@ public:
 
     void pop_back() {
         if (is_empty()) {
-            throw std::logical_error("Cannot pop from empty list");
+            throw std::logic_error("Cannot pop from empty list");
         }
 
         if (_head == _tail) {

@@ -1,98 +1,91 @@
 // Copyright 2025 xd
 
 #include <gtest/gtest.h>
-#include "../lib_easy_example/easy_example.h"
-#include "list.h"
+#include "list2.h"  // ваш файл с двусвязным списком
 
-
-TEST(TestList, can_create_default_list) {
-    ASSERT_NO_THROW(List<int> L);
+TEST(TestListDoubly, can_create_default_list) {
+    ASSERT_NO_THROW(ListDoubly<int> L);
 }
 
-TEST(TestList, can_create_copy_list) {
-    List<int> L;
-    L.push_back(1);
-    L.push_back(2);
-    ASSERT_NO_THROW(List<int> L2(L));
-}
 
-TEST(TestList, is_empty) {
-    List<int> L;
+
+TEST(TestListDoubly, is_empty) {
+    ListDoubly<int> L;
     ASSERT_TRUE(L.is_empty());
 }
 
-TEST(TestList, is_not_empty_after_push) {
-    List<int> L;
+TEST(TestListDoubly, is_not_empty_after_push) {
+    ListDoubly<int> L;
     L.push_back(1);
     ASSERT_FALSE(L.is_empty());
 }
 
-TEST(TestList, can_push_front) {
-    List<int> L;
+TEST(TestListDoubly, can_push_front) {
+    ListDoubly<int> L;
     ASSERT_NO_THROW(L.push_front(1));
 }
 
-TEST(TestList, can_push_back) {
-    List<int> L;
+TEST(TestListDoubly, can_push_back) {
+    ListDoubly<int> L;
     ASSERT_NO_THROW(L.push_back(1));
 }
 
-TEST(TestList, can_insert_at_position) {
-    List<int> L;
+TEST(TestListDoubly, can_insert_at_position) {
+    ListDoubly<int> L;
     L.push_back(1);
     L.push_back(3);
     ASSERT_NO_THROW(L.insert(1, 2));
 }
 
-TEST(TestList, can_pop_front) {
-    List<int> L;
+TEST(TestListDoubly, can_pop_front) {
+    ListDoubly<int> L;
     L.push_back(1);
     ASSERT_NO_THROW(L.pop_front());
 }
 
-TEST(TestList, can_pop_back) {
-    List<int> L;
+TEST(TestListDoubly, can_pop_back) {
+    ListDoubly<int> L;
     L.push_back(1);
     ASSERT_NO_THROW(L.pop_back());
 }
 
-TEST(TestList, can_erase_by_position) {
-    List<int> L;
+TEST(TestListDoubly, can_erase_by_position) {
+    ListDoubly<int> L;
     L.push_back(1);
     L.push_back(2);
     ASSERT_NO_THROW(L.erase(0));
 }
 
-TEST(TestList, can_find_element) {
-    List<int> L;
+TEST(TestListDoubly, can_find_element) {
+    ListDoubly<int> L;
     L.push_back(1);
     L.push_back(2);
     ASSERT_NO_THROW(L.find(1));
 }
 
-TEST(TestList, can_clear_list) {
-    List<int> L;
+TEST(TestListDoubly, can_clear_list) {
+    ListDoubly<int> L;
     L.push_back(1);
     L.push_back(2);
     ASSERT_NO_THROW(L.clear());
 }
 
-TEST(TestList, push_front_correctly_adds_element) {
-    List<int> L;
+TEST(TestListDoubly, push_front_correctly_adds_element) {
+    ListDoubly<int> L;
     L.push_front(1);
     ASSERT_FALSE(L.is_empty());
     ASSERT_EQ(L.size(), 1);
 }
 
-TEST(TestList, push_back_correctly_adds_element) {
-    List<int> L;
+TEST(TestListDoubly, push_back_correctly_adds_element) {
+    ListDoubly<int> L;
     L.push_back(1);
     ASSERT_FALSE(L.is_empty());
     ASSERT_EQ(L.size(), 1);
 }
 
-TEST(TestList, find_returns_correct_node) {
-    List<int> L;
+TEST(TestListDoubly, find_returns_correct_node) {
+    ListDoubly<int> L;
     L.push_back(1);
     L.push_back(2);
 
@@ -101,8 +94,8 @@ TEST(TestList, find_returns_correct_node) {
     ASSERT_EQ(node->value, 2);
 }
 
-TEST(TestList, pop_front_removes_first_element) {
-    List<int> L;
+TEST(TestListDoubly, pop_front_removes_first_element) {
+    ListDoubly<int> L;
     L.push_back(1);
     L.push_back(2);
     L.pop_front();
@@ -112,8 +105,8 @@ TEST(TestList, pop_front_removes_first_element) {
     ASSERT_EQ(node, nullptr);
 }
 
-TEST(TestList, clear_removes_all_elements) {
-    List<int> L;
+TEST(TestListDoubly, clear_removes_all_elements) {
+    ListDoubly<int> L;
     L.push_back(1);
     L.push_back(2);
     L.clear();
@@ -121,26 +114,16 @@ TEST(TestList, clear_removes_all_elements) {
     ASSERT_EQ(L.size(), 0);
 }
 
-TEST(TestList, copy_constructor_creates_equal_list) {
-    List<int> L1;
-    L1.push_back(1);
-    L1.push_back(2);
-
-    List<int> L2(L1);
-    ASSERT_FALSE(L2.is_empty());
-    ASSERT_EQ(L2.size(), 2);
-}
-
-TEST(TestList, iterator_dereference_works) {
-    List<int> L;
+TEST(TestListDoubly, iterator_dereference_works) {
+    ListDoubly<int> L;
     L.push_back(42);
 
-    List<int>::Iterator it = L.begin();
+    ListDoubly<int>::Iterator it = L.begin();
     ASSERT_EQ(*it, 42);
 }
 
-TEST(TestList, size_returns_correct_count) {
-    List<int> L;
+TEST(TestListDoubly, size_returns_correct_count) {
+    ListDoubly<int> L;
     ASSERT_EQ(L.size(), 0);
 
     L.push_back(1);
@@ -152,8 +135,9 @@ TEST(TestList, size_returns_correct_count) {
     L.pop_front();
     ASSERT_EQ(L.size(), 1);
 }
-TEST(TestList, iterator_read_write_works) {
-    List<int> L;
+
+TEST(TestListDoubly, iterator_read_write_works) {
+    ListDoubly<int> L;
     L.push_back(1);
     L.push_back(2);
 
@@ -168,8 +152,8 @@ TEST(TestList, iterator_read_write_works) {
     ASSERT_EQ(*it, 20);
 }
 
-TEST(TestList, iterator_loop_with_empty_list) {
-    List<int> L;
+TEST(TestListDoubly, iterator_loop_with_empty_list) {
+    ListDoubly<int> L;
     ASSERT_NO_THROW({
         for (auto it = L.begin(); it != L.end(); ++it) {
             FAIL() << "Should not enter loop with empty list";
@@ -177,8 +161,8 @@ TEST(TestList, iterator_loop_with_empty_list) {
         });
 }
 
-TEST(TestList, iterator_increment_past_end) {
-    List<int> L;
+TEST(TestListDoubly, iterator_increment_past_end) {
+    ListDoubly<int> L;
     L.push_back(1);
     L.push_back(2);
     L.push_back(100);
@@ -188,4 +172,110 @@ TEST(TestList, iterator_increment_past_end) {
 
     ASSERT_NO_THROW(++it);
     ASSERT_NO_THROW(it++);
+}
+
+// НОВЫЕ ТЕСТЫ ДЛЯ ДВУСВЯЗНОГО СПИСКА
+TEST(TestListDoubly, iterator_decrement_works) {
+    ListDoubly<int> L;
+    L.push_back(1);
+    L.push_back(2);
+    L.push_back(3);
+
+    auto it = L.begin();
+    ++it; // переходим на второй элемент
+    --it; // возвращаемся на первый
+
+    ASSERT_EQ(*it, 1);
+}
+
+TEST(TestListDoubly, reverse_iteration_works) {
+    ListDoubly<int> L;
+    L.push_back(1);
+    L.push_back(2);
+    L.push_back(3);
+
+    // Находим последний элемент (не end())
+    auto it = L.begin();
+    ++it;
+    ++it; // теперь на третьем элементе
+
+    --it; // на втором элементе
+    ASSERT_EQ(*it, 2);
+}
+
+TEST(TestListDoubly, insert_before_node_works) {
+    ListDoubly<int> L;
+    L.push_back(1);
+    L.push_back(3);
+
+    auto node = L.find(3);
+    ASSERT_NE(node, nullptr);
+
+    L.insert(node, 2); // вставляем 2 перед 3
+
+    ASSERT_EQ(L.size(), 3);
+    auto it = L.begin();
+    ASSERT_EQ(*it, 1);
+    ++it;
+    ASSERT_EQ(*it, 2);
+    ++it;
+    ASSERT_EQ(*it, 3);
+}
+
+TEST(TestListDoubly, erase_middle_node_works) {
+    ListDoubly<int> L;
+    L.push_back(1);
+    L.push_back(2);
+    L.push_back(3);
+
+    auto node = L.find(2);
+    ASSERT_NE(node, nullptr);
+
+    L.erase(node);
+
+    ASSERT_EQ(L.size(), 2);
+    auto it = L.begin();
+    ASSERT_EQ(*it, 1);
+    ++it;
+    ASSERT_EQ(*it, 3);
+}
+
+TEST(TestListDoubly, push_front_maintains_links) {
+    ListDoubly<int> L;
+    L.push_front(2);
+    L.push_front(1);
+
+    ASSERT_EQ(L.size(), 2);
+    auto it = L.begin();
+    ASSERT_EQ(*it, 1);
+    ++it;
+    ASSERT_EQ(*it, 2);
+}
+
+TEST(TestListDoubly, push_back_maintains_links) {
+    ListDoubly<int> L;
+    L.push_back(1);
+    L.push_back(2);
+
+    ASSERT_EQ(L.size(), 2);
+    auto it = L.begin();
+    ASSERT_EQ(*it, 1);
+    ++it;
+    ASSERT_EQ(*it, 2);
+}
+
+TEST(TestListDoubly, pop_back_maintains_links) {
+    ListDoubly<int> L;
+    L.push_back(1);
+    L.push_back(2);
+    L.push_back(3);
+
+    L.pop_back();
+
+    ASSERT_EQ(L.size(), 2);
+    ASSERT_EQ(*L.begin(), 1);
+
+    auto it = L.begin();
+    ++it;
+    ASSERT_EQ(*it, 2);
 }

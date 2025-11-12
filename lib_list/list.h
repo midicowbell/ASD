@@ -285,4 +285,8 @@ public:
             pop_front();
         }
     }
+    T& front() {
+        if (is_empty()) throw std::logic_error("List is empty");
+        return _head->value;
+    }
 };
