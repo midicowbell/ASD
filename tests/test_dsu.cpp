@@ -48,7 +48,7 @@ TEST(TestDSU, path_compression_effectiveness) {    // эффективность сжатия пути
     dsu.unite(2, 3);
     EXPECT_EQ(dsu.find(3), dsu.find(0));
 }
-<<<<<<< HEAD
+
 TEST(TestCountIslands, Chessboard10x10) {
     const int SIZE = 10;
     std::vector<std::vector<int>> grid(SIZE, std::vector<int>(SIZE));
@@ -59,7 +59,7 @@ TEST(TestCountIslands, Chessboard10x10) {
         }
     }
 
-    EXPECT_EQ(count_islands(grid), 50); // 100 клеток / 2 = 50 островов
+    EXPECT_EQ(count_islands(grid), 50); 
 }
 
 TEST(TestCountIslands, ClassicExample) {
@@ -71,5 +71,3 @@ TEST(TestCountIslands, ClassicExample) {
     };
     EXPECT_EQ(count_islands(grid), 3);
 }
-=======
->>>>>>> 3ccd0a3eba53b05e0f2aa407d8772fb5d04128fe
