@@ -1,7 +1,7 @@
 // Copyright 2025 xd
 
 #include <gtest/gtest.h>
-#include "list2.h"  // ваш файл с двусвязным списком
+#include "list2.h" 
 
 TEST(TestListDoubly, can_create_default_list) {
     ASSERT_NO_THROW(ListDoubly<int> L);
@@ -174,7 +174,7 @@ TEST(TestListDoubly, iterator_increment_past_end) {
     ASSERT_NO_THROW(it++);
 }
 
-// НОВЫЕ ТЕСТЫ ДЛЯ ДВУСВЯЗНОГО СПИСКА
+
 TEST(TestListDoubly, iterator_decrement_works) {
     ListDoubly<int> L;
     L.push_back(1);
@@ -182,8 +182,8 @@ TEST(TestListDoubly, iterator_decrement_works) {
     L.push_back(3);
 
     auto it = L.begin();
-    ++it; // переходим на второй элемент
-    --it; // возвращаемся на первый
+    ++it; 
+    --it; 
 
     ASSERT_EQ(*it, 1);
 }
@@ -194,12 +194,12 @@ TEST(TestListDoubly, reverse_iteration_works) {
     L.push_back(2);
     L.push_back(3);
 
-    // Находим последний элемент (не end())
+
     auto it = L.begin();
     ++it;
-    ++it; // теперь на третьем элементе
+    ++it; 
 
-    --it; // на втором элементе
+    --it; 
     ASSERT_EQ(*it, 2);
 }
 
@@ -211,7 +211,7 @@ TEST(TestListDoubly, insert_before_node_works) {
     auto node = L.find(3);
     ASSERT_NE(node, nullptr);
 
-    L.insert(node, 2); // вставляем 2 перед 3
+    L.insert(node, 2); 
 
     ASSERT_EQ(L.size(), 3);
     auto it = L.begin();
