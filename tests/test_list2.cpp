@@ -277,3 +277,54 @@ TEST(TestListDoubly, pop_back_maintains_links) {
     ++it;
     ASSERT_EQ(*it, 2);
 }
+TEST(TestListDoubly, forward_iteration_traverses_all_elements) {
+    ListDoubly<int> L;
+    L.push_back(1);
+    L.push_back(2);
+    L.push_back(3);
+
+    std::vector<int> values;
+    for (auto it = L.begin(); it != L.end(); ++it) {
+        values.push_back(*it);
+    }
+
+    ASSERT_EQ(values.size(), 3);
+    ASSERT_EQ(values[0], 1);
+    ASSERT_EQ(values[1], 2);
+    ASSERT_EQ(values[2], 3);
+}
+
+TEST(TestListDoubly, reverse_iteration_traverses_all_elements) {
+    ListDoubly<int> L;
+    L.push_back(1);
+    L.push_back(2);
+    L.push_back(3);
+
+    std::vector<int> values;
+    for (auto it = L.rbegin(); it != L.rend(); --it) {
+        values.push_back(*it);
+    }
+
+    ASSERT_EQ(values.size(), 3);
+    ASSERT_EQ(values[0], 3);
+    ASSERT_EQ(values[1], 2);
+    ASSERT_EQ(values[2], 1);
+}
+
+TEST(TestListDoubly, iterator_can_modify_elements_during_traversal) {
+    ListDoubly<int> L;
+    L.push_back(10);
+    L.push_back(20);
+    L.push_back(30);
+
+    for (auto it = L.begin(); it != L.end(); ++it) {
+        *it += 1;
+    }
+
+    auto it = L.begin();
+    ASSERT_EQ(*it, 11);
+    ++it;
+    ASSERT_EQ(*it, 21);
+    ++it;
+    ASSERT_EQ(*it, 31);
+}

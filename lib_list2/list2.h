@@ -12,7 +12,9 @@ private:
         Node<U>* next;
         Node<U>* prev;
 
-        Node(U val, Node<U>* nxt = nullptr, Node<U>* pre = nullptr) : value(val), next(nxt), prev(pre) {}
+        Node(U val, Node<U>* nxt = nullptr, Node<U>* pre = nullptr)
+            : value(val), next(nxt), prev(pre) {
+        }
     };
 
     Node<T>* _head;
@@ -51,8 +53,11 @@ public:
             return current->value;
         }
 
-        bool operator!=(const Iterator& other) {
+        bool operator!=(const Iterator& other) const {
             return current != other.current;
+        }
+        bool operator==(const Iterator& other) const {
+            return current == other.current;
         }
 
         Iterator operator++(int) {
@@ -90,13 +95,11 @@ public:
         clear();
     }
 
-    Iterator begin() {
-        return Iterator(_head);
-    }
+    Iterator begin() { return Iterator(_head); }
+    Iterator end() { return Iterator(nullptr); }
 
-    Iterator end() {
-        return Iterator(nullptr);
-    }
+    Iterator rbegin() { return Iterator(_tail); }
+    Iterator rend() { return Iterator(nullptr); }
 
     void push_front(const T& val) {
         Node<T>* new_node = new Node<T>(val, _head);
@@ -126,7 +129,7 @@ public:
 
     void insert(int pos, const T& val) {
         if (pos < 0 || pos > _count) {
-            throw std::logic_error ("Position out of range");
+            throw std::logic_error("Position out of range");
         }
 
         if (pos == 0) {
@@ -169,6 +172,9 @@ public:
         if (_head == nullptr) {
             _tail = nullptr;
         }
+        else {
+            _head->prev = nullptr;
+        }
 
         delete temp;
         _count--;
@@ -203,12 +209,13 @@ public:
         if (pos == 0) {
             pop_front();
         }
-        else if (pos == _count - 1) { pop_back(); }
+        else if (pos == _count - 1) {
+            pop_back();
+        }
         else {
             Node<T>* curr = get_node_at(pos);
             erase(curr);
         }
-
     }
 
     void erase(Node<T>* node) {
@@ -228,22 +235,15 @@ public:
             delete node;
             _count--;
         }
-        }
-
-    bool is_empty() const {
-        return _head == nullptr;
     }
 
-    int size() const {
-        return _count;
-    }
+    bool is_empty() const { return _head == nullptr; }
+    int size() const { return _count; }
 
     Node<T>* find(const T& val) {
         Node<T>* current = _head;
         while (current != nullptr) {
-            if (current->value == val) {
-                return current;
-            }
+            if (current->value == val) return current;
             current = current->next;
         }
         return nullptr;
@@ -252,9 +252,7 @@ public:
     const Node<T>* find(const T& val) const {
         Node<T>* current = _head;
         while (current != nullptr) {
-            if (current->value == val) {
-                return current;
-            }
+            if (current->value == val) return current;
             current = current->next;
         }
         return nullptr;
