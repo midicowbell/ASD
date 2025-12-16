@@ -71,3 +71,75 @@ TEST(TestCountIslands, ClassicExample) {
     };
     EXPECT_EQ(count_islands(grid), 3);
 }
+TEST(TestCountIslands, EmptyGrid) {
+    std::vector<std::vector<int>> grid = {};
+    EXPECT_EQ(count_islands(grid), 0);
+}
+
+TEST(TestCountIslands, AllZeros) {
+    std::vector<std::vector<int>> grid = {
+        {0, 0, 0},
+        {0, 0, 0},
+        {0, 0, 0}
+    };
+    EXPECT_EQ(count_islands(grid), 0);
+}
+
+TEST(TestCountIslands, AllOnes) {
+    std::vector<std::vector<int>> grid = {
+        {1, 1, 1},
+        {1, 1, 1},
+        {1, 1, 1}
+    };
+    EXPECT_EQ(count_islands(grid), 1);
+}
+
+TEST(TestCountIslands, SingleRow) {
+    std::vector<std::vector<int>> grid = {
+        {1, 0, 1, 0, 1, 1, 0, 1}
+    };
+    EXPECT_EQ(count_islands(grid), 4);
+}
+
+TEST(TestCountIslands, SingleColumn) {
+    std::vector<std::vector<int>> grid = {
+        {1},
+        {0},
+        {1},
+        {1},
+        {0},
+        {1}
+    };
+    EXPECT_EQ(count_islands(grid), 3);
+}
+
+TEST(TestCountIslands, ZigzagIsland) {
+    std::vector<std::vector<int>> grid = {
+        {1, 0, 1, 0, 1},
+        {0, 1, 0, 1, 0},
+        {1, 0, 1, 0, 1},
+        {0, 1, 0, 1, 0}
+    };
+    EXPECT_EQ(count_islands(grid), 10);
+}
+
+TEST(TestCountIslands, ComplexShape) {
+    std::vector<std::vector<int>> grid = {
+        {1, 1, 0, 1, 0},
+        {1, 0, 1, 1, 1},
+        {0, 1, 0, 0, 1},
+        {1, 1, 1, 0, 0}
+    };
+    EXPECT_EQ(count_islands(grid), 3);
+}
+
+TEST(TestCountIslands, FromAssignment) {
+    std::vector<std::vector<int>> grid = {
+        {1, 1, 0, 0, 0, 0, 1},
+        {1, 0, 0, 0, 0, 0, 0},
+        {0, 1, 1, 0, 1, 0, 0},
+        {0, 0, 1, 1, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0, 1}
+    };
+    EXPECT_EQ(count_islands(grid), 5);
+}
