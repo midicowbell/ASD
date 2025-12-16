@@ -83,7 +83,7 @@ public:
 
     typedef Iterator iterator;
 
-    ListDoubly() : _head(nullptr), _tail(nullptr), _count(0) {};
+    ListDoubly() : _head(nullptr), _tail(nullptr), _count(0) {}
 
     ListDoubly(const ListDoubly& other) : _head(nullptr), _tail(nullptr), _count(0) {
         for (Node<T>* cur = other._head; cur != nullptr; cur = cur->next) {

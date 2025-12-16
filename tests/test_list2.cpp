@@ -182,7 +182,7 @@ TEST(TestListDoubly, iterator_decrement_works) {
 
     auto it = L.begin();
     ++it;
-    --it; 
+    --it;
 
     ASSERT_EQ(*it, 1);
 }
@@ -195,9 +195,9 @@ TEST(TestListDoubly, reverse_iteration_works) {
 
     auto it = L.begin();
     ++it;
-    ++it; 
+    ++it;
 
-    --it; 
+    --it;
     ASSERT_EQ(*it, 2);
 }
 
