@@ -1,14 +1,9 @@
 ﻿#pragma once
 #include <cstddef>
-
-// ЭТО САМОЕ ВАЖНОЕ — ПОДКЛЮЧАЕМ СПИСОК ПЕРЕД ВСЁМ!
-#include "../lib_list/list.h"   // ← УБЕДИСЬ, ЧТО ПУТЬ ПРАВИЛЬНЫЙ!!!
-
+#include "../lib_list/list.h"   
 template<typename T>
 bool fu1(const List<T>& list) {
     if (!list.head() || !list.head()->next) return false;
-
-    // ЯВНО ПИШЕМ ТИП — auto* НЕ НАДО, ЧТОБЫ НЕ БЫЛО ОШИБОК
     typename List<T>::Node<T>* slow = list.head();
     typename List<T>::Node<T>* fast = list.head();
 
