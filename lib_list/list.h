@@ -68,12 +68,22 @@ public:
     List() : _head(nullptr), _tail(nullptr), _count(0) {}
 
     List(const List& other) : _head(nullptr), _tail(nullptr), _count(0) {
-        Node<T>* current = other._head;
-        while (current != nullptr) {
-            push_back(current->value);
-            current = current->next;
+        if (other._head == nullptr) {
+            return;
+        }
+        _head = new Node<T>(other._head->value);
+        _tail = _head;
+        _count = 1;
+        Node<T>* current_other = other._head->next;
+        while (current_other != nullptr) {
+            Node<T>* new_node = new Node<T>(current_other->value);
+            _tail->next = new_node;
+            _tail = new_node;
+            _count++;
+            current_other = current_other->next;
         }
     }
+
 
     ~List() {
         clear();

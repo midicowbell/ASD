@@ -86,10 +86,22 @@ public:
     ListDoubly() : _head(nullptr), _tail(nullptr), _count(0) {}
 
     ListDoubly(const ListDoubly& other) : _head(nullptr), _tail(nullptr), _count(0) {
-        for (Node<T>* cur = other._head; cur != nullptr; cur = cur->next) {
-            push_back(cur->value);
+        if (other._head == nullptr) {
+            return;
+        }
+        _head = new Node<T>(other._head->value);
+        _tail = _head;
+        _count = 1;
+        Node<T>* cur_other = other._head->next;
+        while (cur_other != nullptr) {
+            Node<T>* new_node = new Node<T>(cur_other->value, nullptr, _tail);
+            _tail->next = new_node;
+            _tail = new_node;
+            _count++;
+            cur_other = cur_other->next;
         }
     }
+
 
     ~ListDoubly() {
         clear();
